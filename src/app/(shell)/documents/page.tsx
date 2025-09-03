@@ -11,13 +11,13 @@ export default function DocumentsPage(){
   useEffect(()=>void load(), []);
 
   async function upload(file: File) {
-    const presigned = await postJson<{url:string; fileUrl:string; method:'PUT'}>(`/documents/presigned`, {
+    const presign = await postJson<{url:string; fileUrl:string; method:'PUT'}>(`/documents/presign`, {
       filename: file.name, contentType: file.type || 'application/octet-stream'
     });
-    await fetch(presigned.url, { method: 'PUT', body: file });
+    await fetch(presign.url, { method: 'PUT', body: file });
     const contracts = await getJson<Doc[]>(`/contracts`);
     const contractId = contracts?.[0]?.id;
-    await postJson(`/documents`, { contractId, name: file.name, type: 'invoice', fileUrl: presigned.fileUrl, sizeBytes: file.size });
+    await postJson(`/documents`, { contractId, name: file.name, type: 'invoice', fileUrl: presign.fileUrl, sizeBytes: file.size });
     load();
   }
 

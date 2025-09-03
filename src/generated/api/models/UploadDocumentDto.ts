@@ -2,9 +2,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type UpdateContract = {
-    rateCents?: number;
-    rateUnit?: string;
-    status?: string;
+export type UploadDocumentDto = {
 };
 

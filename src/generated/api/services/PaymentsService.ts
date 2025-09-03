@@ -2,8 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { StartPayment } from '../models/StartPayment';
-import type { UpdatePaymentStatus } from '../models/UpdatePaymentStatus';
+import type { StartPaymentDto } from '../models/StartPaymentDto';
+import type { UpdatePaymentStatusDto } from '../models/UpdatePaymentStatusDto';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -32,7 +32,7 @@ export class PaymentsService {
     public static paymentsControllerStart({
         requestBody,
     }: {
-        requestBody: StartPayment,
+        requestBody: StartPaymentDto,
     }): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -50,7 +50,7 @@ export class PaymentsService {
         requestBody,
     }: {
         id: string,
-        requestBody: UpdatePaymentStatus,
+        requestBody: UpdatePaymentStatusDto,
     }): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PATCH',

@@ -7,7 +7,7 @@ export default function ShellLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname(); // ✅ consistent on server and client
 
   return (
-    <div className="mx-auto flex max-w-7xl gap-6 px-3 py-4 sm:px-6 lg:px-8">
+    <div className="mx-auto flex gap-6 px-3 py-4 sm:px-6 lg:px-8">
       <aside className="sticky top-4 hidden h-[calc(100vh-2rem)] w-64 shrink-0 rounded-3xl bg-blue-900 p-4 text-white shadow-xl lg:block">
         <div className="flex items-center gap-2 px-2 py-3">
           <div className="h-8 w-8 rounded-xl bg-white/20" /><span className="text-lg font-bold tracking-tight">Remoola</span>
