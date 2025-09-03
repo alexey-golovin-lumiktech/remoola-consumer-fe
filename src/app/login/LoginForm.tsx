@@ -12,7 +12,6 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
     setErr(undefined);
 
     const base = process.env.NEXT_PUBLIC_API_BASE_URL!;
-    // 1) login (httpOnly cookies set by API)
     const r = await fetch(`${base}/auth/login`, {
       method: "POST",
       credentials: "include",
@@ -24,14 +23,12 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
       return;
     }
 
-    // 2) verify cookies immediately
     const me = await fetch(`${base}/auth/me`, { credentials: "include", cache: "no-store" });
     if (!me.ok) {
       setErr("Logged in, but cookies not available (CORS/cookie attrs?).");
       return;
     }
 
-    // 3) hard navigate so middleware/SSR sees cookie
     window.location.assign(nextPath || "/dashboard");
   }
 
