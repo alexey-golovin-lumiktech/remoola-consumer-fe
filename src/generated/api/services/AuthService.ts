@@ -2,21 +2,21 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AuthResponseDto } from '../models/AuthResponseDto';
-import type { LoginDto } from '../models/LoginDto';
+import type { AuthResponse } from '../models/AuthResponse';
+import type { Login } from '../models/Login';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class AuthService {
     /**
-     * @returns AuthResponseDto
+     * @returns AuthResponse
      * @throws ApiError
      */
     public static authControllerLogin({
         requestBody,
     }: {
-        requestBody: LoginDto,
-    }): CancelablePromise<AuthResponseDto> {
+        requestBody: Login,
+    }): CancelablePromise<AuthResponse> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/auth/login',
@@ -52,6 +52,16 @@ export class AuthService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/auth/me',
+        });
+    }
+    /**
+     * @returns any
+     * @throws ApiError
+     */
+    public static authControllerEcho(): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/auth/echo',
         });
     }
 }

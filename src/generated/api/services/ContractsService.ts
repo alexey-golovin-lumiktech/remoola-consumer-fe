@@ -2,8 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CreateContractDto } from '../models/CreateContractDto';
-import type { UpdateContractDto } from '../models/UpdateContractDto';
+import type { CreateContract } from '../models/CreateContract';
+import type { UpdateContract } from '../models/UpdateContract';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -35,7 +35,7 @@ export class ContractsService {
     public static contractsControllerCreate({
         requestBody,
     }: {
-        requestBody: CreateContractDto,
+        requestBody: CreateContract,
     }): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -53,7 +53,7 @@ export class ContractsService {
         requestBody,
     }: {
         id: string,
-        requestBody: UpdateContractDto,
+        requestBody: UpdateContract,
     }): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PUT',

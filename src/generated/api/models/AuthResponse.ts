@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type UpdateContractDto = {
+export type AuthResponse = {
+    access_token: string;
 };
 

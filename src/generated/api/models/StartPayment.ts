@@ -2,6 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type UpdatePaymentStatusDto = {
+export type StartPayment = {
+    contractId: string;
+    amountCents: number;
+    currency?: string;
+    method?: string;
 };
 

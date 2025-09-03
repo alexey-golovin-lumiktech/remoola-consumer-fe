@@ -7,14 +7,16 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-export type { AuthResponseDto } from './models/AuthResponseDto';
-export type { CreateContractDto } from './models/CreateContractDto';
-export type { LoginDto } from './models/LoginDto';
-export type { StartPaymentDto } from './models/StartPaymentDto';
-export type { UpdateContractDto } from './models/UpdateContractDto';
-export type { UpdatePaymentStatusDto } from './models/UpdatePaymentStatusDto';
-export type { UploadDocumentDto } from './models/UploadDocumentDto';
+export type { AuthResponse } from './models/AuthResponse';
+export type { CreateContract } from './models/CreateContract';
+export type { DocumentListItem } from './models/DocumentListItem';
+export type { Login } from './models/Login';
+export type { StartPayment } from './models/StartPayment';
+export type { UpdateContract } from './models/UpdateContract';
+export type { UpdatePaymentStatus } from './models/UpdatePaymentStatus';
+export type { UploadDocument } from './models/UploadDocument';
 
+export { AdminService } from './services/AdminService';
 export { AuthService } from './services/AuthService';
 export { ContractsService } from './services/ContractsService';
 export { DashboardService } from './services/DashboardService';

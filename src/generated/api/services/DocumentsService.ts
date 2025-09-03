@@ -2,20 +2,21 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { UploadDocumentDto } from '../models/UploadDocumentDto';
+import type { DocumentListItem } from '../models/DocumentListItem';
+import type { UploadDocument } from '../models/UploadDocument';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class DocumentsService {
     /**
-     * @returns any
+     * @returns DocumentListItem
      * @throws ApiError
      */
     public static documentsControllerList({
         clientId,
     }: {
         clientId: string,
-    }): CancelablePromise<any> {
+    }): CancelablePromise<Array<DocumentListItem>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/documents',
@@ -31,7 +32,7 @@ export class DocumentsService {
     public static documentsControllerUpload({
         requestBody,
     }: {
-        requestBody: UploadDocumentDto,
+        requestBody: UploadDocument,
     }): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -44,10 +45,10 @@ export class DocumentsService {
      * @returns any
      * @throws ApiError
      */
-    public static documentsControllerPresign(): CancelablePromise<any> {
+    public static documentsControllerPresigned(): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/documents/presign',
+            url: '/api/documents/presigned',
         });
     }
 }
