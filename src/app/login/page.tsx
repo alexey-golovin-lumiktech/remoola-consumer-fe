@@ -1,11 +1,16 @@
 import LoginForm from "./LoginForm";
 
-export default function LoginPage({
+type SP = Record<string, string | string[] | undefined>;
+
+export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: { [k: string]: string | string[] | undefined };
+  // 👇 Next 15: searchParams is a Promise in server components
+  searchParams: Promise<SP>;
 }) {
-  const next =
-    (Array.isArray(searchParams?.next) ? searchParams.next[0] : searchParams?.next) || "/dashboard";
+  const sp = await searchParams; // ✅ await before use
+  const raw = Array.isArray(sp.next) ? sp.next[0] : sp.next;
+  const next = typeof raw === "string" && raw.length > 0 ? decodeURIComponent(raw) : "/dashboard";
+
   return <LoginForm nextPath={next} />;
 }

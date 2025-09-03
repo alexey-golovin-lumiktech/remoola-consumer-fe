@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { SidebarLink } from "@/components/ui";
+import { SidebarLink } from '@remoola/ui';
 import { usePathname } from "next/navigation";
 
 export default function ShellLayout({ children }: { children: React.ReactNode }) {
