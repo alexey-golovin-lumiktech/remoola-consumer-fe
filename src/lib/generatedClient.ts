@@ -1,4 +1,4 @@
-import { OpenAPI, ContractsService, PaymentsService, DocumentsService, DashboardService, AuthService } from '@/generated/api';
+import { OpenAPI, ContractsService, PaymentsService, DocumentsService, DashboardService, AuthService } from '@remoola/openapi';
 
 export function configureOpenAPI(getToken: () => string | undefined) {
   OpenAPI.BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3333/api";
