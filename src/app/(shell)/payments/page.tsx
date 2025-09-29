@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Card, Badge } from "@/components/ui";
-import { getJson, postJson } from "@/lib/api";
+import { Card, Badge } from '@remoola/ui';
+import { getJson, postJson } from "../../../lib/api";
 
-type Payment = { id:string; contract:string; amount:string; method:string; status:'Completed'|'Pending'|'Failed'; date:string; };
+type Payment = { id:string; contract:string; amount:string; method:string; status:`Completed`|`Pending`|`Failed`; date:string; };
 
 
 export default function PaymentsPage(){
@@ -33,9 +33,9 @@ export default function PaymentsPage(){
                   <td className="py-3 pr-4 text-gray-700">{p.amount}</td>
                   <td className="py-3 pr-4 text-gray-700">{p.method}</td>
                   <td className="py-3 pr-4">
-                    {p.status === 'Completed' && <Badge tone="green" label="Completed" />}
-                    {p.status === 'Pending'   && <Badge tone="blue"  label="Pending" />}
-                    {p.status === 'Failed'    && <Badge tone="red"   label="Failed" />}
+                    {p.status === `Completed` && <Badge tone="green" label="Completed" />}
+                    {p.status === `Pending`   && <Badge tone="blue"  label="Pending" />}
+                    {p.status === `Failed`    && <Badge tone="red"   label="Failed" />}
                   </td>
                   <td className="py-3 text-gray-600">{p.date}</td>
                 </tr>

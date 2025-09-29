@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Card } from "@/components/ui";
-import { getJson, postJson } from "@/lib/api";
+import { Card } from '@remoola/ui';
+import { getJson, postJson } from "../../../lib/api";
 
 type Doc = { id:string; name:string; type:string; size:string; updated:string; fileUrl?:string; };
 
@@ -11,13 +11,13 @@ export default function DocumentsPage(){
   useEffect(()=>void load(), []);
 
   async function upload(file: File) {
-    const presigned = await postJson<{url:string; fileUrl:string; method:'PUT'}>(`/documents/presigned`, {
-      filename: file.name, contentType: file.type || 'application/octet-stream'
+    const presigned = await postJson<{url:string; fileUrl:string; method:`PUT`}>(`/documents/presigned`, {
+      filename: file.name, contentType: file.type || `application/octet-stream`
     });
-    await fetch(presigned.url, { method: 'PUT', body: file });
+    await fetch(presigned.url, { method: `PUT`, body: file });
     const contracts = await getJson<Doc[]>(`/contracts`);
     const contractId = contracts?.[0]?.id;
-    await postJson(`/documents`, { contractId, name: file.name, type: 'invoice', fileUrl: presigned.fileUrl, sizeBytes: file.size });
+    await postJson(`/documents`, { contractId, name: file.name, type: `invoice`, fileUrl: presigned.fileUrl, sizeBytes: file.size });
     load();
   }
 
@@ -37,7 +37,7 @@ export default function DocumentsPage(){
             <tbody>
               {rows.map(d=>(
                 <tr key={d.id} className="border-t border-gray-100">
-                  <td className="py-3 pr-4 font-medium text-gray-900"><a className="hover:underline" href={d.fileUrl ?? '#'}>{d.name}</a></td>
+                  <td className="py-3 pr-4 font-medium text-gray-900"><a className="hover:underline" href={d.fileUrl ?? `#`}>{d.name}</a></td>
                   <td className="py-3 pr-4 text-gray-700 capitalize">{d.type}</td>
                   <td className="py-3 pr-4 text-gray-700">{d.size}</td>
                   <td className="py-3 text-gray-600">{d.updated}</td>

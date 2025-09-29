@@ -1,33 +1,16 @@
-"use client";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import LoginForm from "./LoginForm";
 
-export default function LoginPage(){
-  const [email,setEmail] = useState("client1@example.com");
-  const [password,setPassword] = useState("password1");
-  const [err,setErr] = useState<string>();
-  const router = useRouter();
-  const next = useSearchParams().get("next") || "/dashboard";
+type SP = Record<string, string | string[] | undefined>;
 
-  async function submit(e: React.FormEvent){
-    e.preventDefault(); setErr(undefined);
-    const r = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
-      method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    });
-    if (!r.ok) { setErr('Login failed'); return; }
-    router.push(next);
-  }
+export default async function LoginPage({
+  searchParams,
+}: {
+  // 👇 Next 15: searchParams is a Promise in server components
+  searchParams: Promise<SP>;
+}) {
+  const sp = await searchParams; // ✅ await before use
+  const raw = Array.isArray(sp.next) ? sp.next[0] : sp.next;
+  const next = typeof raw === `string` && raw.length > 0 ? decodeURIComponent(raw) : `/dashboard`;
 
-  return (
-    <div className="mx-auto max-w-md p-8">
-      <h1 className="text-2xl font-semibold mb-4">Sign in</h1>
-      <form onSubmit={submit} className="space-y-3">
-        <input className="w-full rounded-lg border px-3 py-2" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
-        <input className="w-full rounded-lg border px-3 py-2" type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} />
-        {err && <p className="text-rose-600 text-sm">{err}</p>}
-        <button className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white">Login</button>
-      </form>
-    </div>
-  );
+  return <LoginForm nextPath={next} />;
 }
