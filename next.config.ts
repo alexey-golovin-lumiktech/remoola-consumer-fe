@@ -1,9 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 import path from 'path'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  transpilePackages: [`@remoola/ui`, `@remoola/openapi`],
   outputFileTracingRoot: path.join(__dirname, `../../`),
   allowedDevOrigins: [`localhost`, `127.0.0.1`],
 };

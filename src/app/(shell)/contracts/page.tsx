@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Card, Badge } from '@remoola/ui';
-import { getJson, postJson, putJson } from "../../../lib/api";
+import { useEffect, useState } from 'react';
+import { getJson, postJson, putJson } from '../../../lib/api';
+import { Card, Badge } from '../../../components/ui';
 
 type Row = { id:string; contractorId:string;  contractorName:string; rate:string; status:string; lastActivityAgo:string; };
 

@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
-import { SidebarLink } from '@remoola/ui';
-import { usePathname } from "next/navigation";
+import React from 'react';
+import { usePathname } from 'next/navigation';
+import { SidebarLink } from '../../components/ui';
 
 export default function ShellLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname(); // ✅ consistent on server and client
