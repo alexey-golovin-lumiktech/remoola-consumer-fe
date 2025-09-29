@@ -4,5 +4,5 @@ import { OpenAPI } from "@remoola/openapi";
 export function configureOpenAPI() {
   OpenAPI.BASE = process.env.NEXT_PUBLIC_API_BASE_URL!;
   OpenAPI.WITH_CREDENTIALS = true;
-  OpenAPI.CREDENTIALS = "include";
+  OpenAPI.CREDENTIALS = `include`;
 } 

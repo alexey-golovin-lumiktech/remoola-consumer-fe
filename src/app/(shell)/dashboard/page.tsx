@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Card, Badge, Progress as ProgressBar } from '@remoola/ui';
-import { getJson } from "@/lib/api";
+import { getJson } from "../../../lib/api";
 
 type DashboardDto = {
   balance: string; contractsActiveCount: number; lastPaymentAgo: string;
@@ -21,9 +21,9 @@ export default function DashboardPage(){
       <p className="mt-1 text-sm text-gray-600">Pay contractors fast and keep everything compliant.</p>
 
       <section className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <Card><p className="text-sm text-gray-500">Balance</p><p className="mt-2 text-2xl font-semibold text-gray-900">{data?.balance ?? "$0.00"}</p></Card>
+        <Card><p className="text-sm text-gray-500">Balance</p><p className="mt-2 text-2xl font-semibold text-gray-900">{data?.balance ?? `$0.00`}</p></Card>
         <Card><p className="text-sm text-gray-500">Contracts</p><p className="mt-2 text-2xl font-semibold text-gray-900">{data?.contractsActiveCount ?? 0} active</p></Card>
-        <Card><p className="text-sm text-gray-500">Last payment</p><p className="mt-2 text-2xl font-semibold text-gray-900">{data?.lastPaymentAgo ?? "—"}</p></Card>
+        <Card><p className="text-sm text-gray-500">Last payment</p><p className="mt-2 text-2xl font-semibold text-gray-900">{data?.lastPaymentAgo ?? `—`}</p></Card>
       </section>
 
       <section className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -53,7 +53,7 @@ export default function DashboardPage(){
                   <tr key={c.id} className="border-t border-gray-100">
                     <td className="py-3 pr-4 font-medium text-gray-900">{c.contractorName}</td>
                     <td className="py-3 pr-4 text-gray-700">{c.rate}</td>
-                    <td className="py-3 pr-4">{c.status === 'Active' ? <Badge label="Active" tone="green"/> : <Badge label="Signature" tone="blue"/>}</td>
+                    <td className="py-3 pr-4">{c.status === `Active` ? <Badge label="Active" tone="green"/> : <Badge label="Signature" tone="blue"/>}</td>
                     <td className="py-3 text-gray-600">{c.lastActivityAgo}</td>
                   </tr>
                 ))}
@@ -68,13 +68,13 @@ export default function DashboardPage(){
           <div className="space-y-3 text-sm">
             <div className="flex items-center justify-between"><span>W-9 pack ready</span><Badge label="7 m" tone="gray" /></div>
             <div>KYC in review</div>
-            <div>Bank details {data?.compliance?.bankVerified ? "verified" : "pending"}</div>
+            <div>Bank details {data?.compliance?.bankVerified ? `verified` : `pending`}</div>
           </div>
         </Card>
         <Card title="Quick Docs" actions={<a href="/documents" className="text-sm font-medium text-blue-600 hover:underline">View all</a>}>
           <ul className="space-y-2">
             {data?.quickDocs?.map(d => (
-              <li key={d.id}><a href={d.fileUrl ?? '/documents'} className="flex items-center justify-between rounded-lg px-2 py-2 text-sm text-gray-700 hover:bg-gray-50"><span>{d.name}</span><span className="text-gray-400">↗</span></a></li>
+              <li key={d.id}><a href={d.fileUrl ?? `/documents`} className="flex items-center justify-between rounded-lg px-2 py-2 text-sm text-gray-700 hover:bg-gray-50"><span>{d.name}</span><span className="text-gray-400">↗</span></a></li>
             ))}
           </ul>
         </Card>
@@ -88,7 +88,7 @@ export default function DashboardPage(){
           </div>
         </Card>
         <Card title="Quick Docs">
-          <ul className="space-y-2">{data?.quickDocs?.map(d => (<li key={d.id} className="flex items-center justify-between text-sm text-gray-700"><span>{d.name}</span><a className="rounded-lg border border-gray-200 px-2 py-1 text-xs" href={d.fileUrl ?? '#'}>Open</a></li>))}</ul>
+          <ul className="space-y-2">{data?.quickDocs?.map(d => (<li key={d.id} className="flex items-center justify-between text-sm text-gray-700"><span>{d.name}</span><a className="rounded-lg border border-gray-200 px-2 py-1 text-xs" href={d.fileUrl ?? `#`}>Open</a></li>))}</ul>
         </Card>
         <div className="hidden lg:block"/>
       </section>

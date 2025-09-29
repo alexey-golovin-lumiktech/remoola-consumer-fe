@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Card, Badge } from '@remoola/ui';
-import { getJson, putJson, postJson } from "@/lib/api";
+import { getJson, postJson, putJson } from "../../../lib/api";
 
 type Row = { id:string; contractorId:string;  contractorName:string; rate:string; status:string; lastActivityAgo:string; };
 
@@ -18,7 +18,7 @@ export default function ContractsPage(){
     <section className="mt-5">
       <Card actions={<button onClick={async()=>{ 
         // demo create: choose real contractorId in your UI
-        await postJson(`/contracts`, { contractorId: rows[0]?.contractorId , rateCents: 8000, rateUnit: 'hour', some:2222222222 });
+        await postJson(`/contracts`, { contractorId: rows[0]?.contractorId , rateCents: 8000, rateUnit: `hour`, some:2222222222 });
         load();
       }} className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-blue-700">New Contract</button>}>
         <div className="overflow-x-auto">
@@ -29,10 +29,10 @@ export default function ContractsPage(){
                 <tr key={c.id} className="border-t border-gray-100">
                   <td className="py-3 pr-4 font-medium text-gray-900">{c.contractorName}</td>
                   <td className="py-3 pr-4 text-gray-700">{c.rate}</td>
-                  <td className="py-3 pr-4">{c.status === 'Active' ? <Badge label="Active" tone="green"/> : <Badge label={c.status} tone="blue"/>}</td>
+                  <td className="py-3 pr-4">{c.status === `Active` ? <Badge label="Active" tone="green"/> : <Badge label={c.status} tone="blue"/>}</td>
                   <td className="py-3 pr-4 text-gray-600">{c.lastActivityAgo}</td>
                   <td className="py-3"><div className="flex items-center gap-2">
-                    <button className="rounded-lg border border-gray-200 px-2 py-1 text-xs" onClick={async()=>{ await putJson(`/contracts/${c.id}`, { status: 'active' }); load(); }}>Activate</button>
+                    <button className="rounded-lg border border-gray-200 px-2 py-1 text-xs" onClick={async()=>{ await putJson(`/contracts/${c.id}`, { status: `active` }); load(); }}>Activate</button>
                   </div></td>
                 </tr>
               ))}
